@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/posts.models';
 import { AppState } from 'src/app/store/app.state';
-import { getPosts } from '../state/posts.selector';
+
+import * as fromPostsActions from '../state/posts.actions';
+import { getPostList } from '../state/posts.selector';
 
 @Component({
   selector: 'app-posts-list',
@@ -16,6 +17,10 @@ export class PostsListComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.posts$ = this.store.select(getPosts);
+    this.posts$ = this.store.select(getPostList);
+  }
+
+  deletePost(id: number) {
+    this.store.dispatch(fromPostsActions.deletePostAction(id));
   }
 }

@@ -11,6 +11,7 @@
           <th>Title</th>
           <th>Body</th>
           <th>User Id</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +20,17 @@
           <td>{{ post.title }}</td>
           <td>{{ post.body }}</td>
           <td>{{ post.userId }}</td>
+          <td>
+            <a
+              class="btn btn-primary"
+              [routerLink]="['/posts', post.id, 'edit']"
+            >
+              Update
+            </a>
+          </td>
+          <td>
+            <a class="btn btn-danger" (click)="deletePost(post.id!)">Delete</a>
+          </td>
         </tr>
       </tbody>
     </table>

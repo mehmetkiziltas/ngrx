@@ -1,14 +1,16 @@
-import { counterReducer } from '../counter/state/counter.reducer';
-import { CounterState } from '../counter/state/counter.state';
-import { postsReducer } from '../posts/state/posts.reducer';
-import { PostsState } from '../posts/state/posts.state';
+import { authReducer } from '../auth/state/auth.reducer';
+import { AUTH_FEATURE_KEY } from '../auth/state/auth.selector';
+import { AuthState } from '../auth/state/auth.state';
+import { sharedReducer } from './shared/shared.reducer';
+import { SHARED_FEATURE_KEY } from './shared/shared.selector';
+import { SharedState } from './shared/shared.state';
 
 export interface AppState {
-  counter: CounterState;
-  posts: PostsState;
+  [AUTH_FEATURE_KEY]: AuthState;
+  [SHARED_FEATURE_KEY]: SharedState;
 }
 
 export const appReducer = {
-  counter: counterReducer,
-  posts: postsReducer,
+  [AUTH_FEATURE_KEY]: authReducer,
+  [SHARED_FEATURE_KEY]: sharedReducer,
 };

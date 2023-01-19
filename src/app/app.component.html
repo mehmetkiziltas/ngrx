@@ -1,5 +1,9 @@
 <app-header></app-header>
+<app-loading-spinner *ngIf="showLoadingSpinner$ | async"></app-loading-spinner>
 <div class="container">
+  <div class="alert alert-danger" *ngIf="authLoginError$ | async">
+    {{ authLoginError$ | async }}
+  </div>
   <div class="row">
     <div class="col-md-12">
       <router-outlet></router-outlet>

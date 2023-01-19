@@ -1,6 +1,15 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { PostsState } from './posts.state';
 
-const getPostsState = createFeatureSelector<PostsState>('posts');
+export const POSTS_FEATURE_KEY = 'posts';
 
-export const getPosts = createSelector(getPostsState, (state) => state.posts);
+const selectPostSelector = createFeatureSelector<PostsState>(POSTS_FEATURE_KEY);
+
+export const getPostById = (id: number) =>
+  createSelector(selectPostSelector, (state) =>
+    state.posts.find((p) => p.id === id)
+  );
+
+export const getPostList = createSelector(selectPostSelector, (state) => {
+  return state.posts;
+});
